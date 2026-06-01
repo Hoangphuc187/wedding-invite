@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - Thiệp Cưới</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        
+        h1 {
+            color: #e91e63;
+            margin-top: 0;
+            font-size: 2em;
+        }
+        
+        #qrcode {
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+        }
+        
+        #qrcode canvas {
+            border: 3px solid #e91e63;
+            border-radius: 10px;
+        }
+        
+        .link-text {
+            word-break: break-all;
+            color: #666;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #e91e63, #c2185b);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
+        }
+        
+        .instruction {
+            color: #999;
+            font-size: 13px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>💍 QR Code Thiệp Cưới 💍</h1>
+    <p>Quét mã QR dưới đây để xem thiệp chúc mừng</p>
+    
+    <div id="qrcode"></div>
+    
+    <div class="link-text">
+        <strong>Link:</strong><br>
+        https://wedding-invite-nful3xz95-hoangphucs-projects-1fc39bea.vercel.app/thiep-cuoi-tho-lo.html
+    </div>
+    
+    <div class="button-group">
+        <button onclick="window.print()">🖨️ In QR Code</button>
+        <button onclick="copyLink()">📋 Copy Link</button>
+        <button onclick="saveQR()">💾 Download QR</button>
+    </div>
+    
+    <div class="instruction">
+        💡 Bạn bè quét mã QR này sẽ thấy thiệp chúc mừng của bạn!
+    </div>
+</div>
+
+<script>
+// Tạo QR Code
+new QRCode(document.getElementById('qrcode'), {
+    text: 'https://wedding-invite-nful3xz95-hoangphucs-projects-1fc39bea.vercel.app/thiep-cuoi-tho-lo.html',
+    width: 300,
+    height: 300,
+    colorDark: '#e91e63',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+});
+
+// Copy link
+function copyLink() {
+    const link = 'https://wedding-invite-nful3xz95-hoangphucs-projects-1fc39bea.vercel.app/thiep-cuoi-tho-lo.html';
+    navigator.clipboard.writeText(link).then(() => {
+        alert('✅ Đã copy link!');
+    }).catch(() => {
+        alert('Link: ' + link);
+    });
+}
+
+// Download QR Code
+function saveQR() {
+    const canvas = document.querySelector('#qrcode canvas');
+    const link = document.createElement('a');
+    link.href = canvas.toDataURL('image/png');
+    link.download = 'QR_Code_Wedding_Thiep_Lo.png';
+    link.click();
+}
+</script>
+
+</body>
+</html>
